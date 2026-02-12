@@ -1,27 +1,24 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
 import sys
 
 # Estados
-Q1, Q2, Q3 = 1, 2, 3  # q1 inicial, q2 aceptación, q3 trampa
+Q1, Q2, Q3 = 1, 2, 3
 
 def delta(state: int, symbol: str) -> int:
-    # Transiciones según el diagrama
+    
     if state == Q1:
-        return Q2 if symbol == "0" else Q3  # 0->q2, 1->q3
+        return Q2 if symbol == "0" else Q3  
     if state == Q2:
-        return Q2  # (0,1)->q2
-    return Q3      # (0,1)->q3
+        return Q2 
+    return Q3    
 
 def acepta(linea: str) -> bool:
     w = linea.strip()
 
-    # Cadena vacía NO ACEPTA (no "empieza" con 0)
+    #Cadena vacia
     if w == "":
         return False
 
-    # Validación: solo 0 y 1
+    #Validacion de solo 0 y 1
     for ch in w:
         if ch not in ("0", "1"):
             return False
@@ -34,8 +31,7 @@ def acepta(linea: str) -> bool:
 
 
 def main() -> int:
-    # Para respetar "solo imprimir ACEPTA o NO ACEPTA"
-    # si el comando está mal, no imprimimos nada.
+    #"solo imprimir ACEPTA o NO ACEPTA"
     if len(sys.argv) != 2:
         return 1
 
